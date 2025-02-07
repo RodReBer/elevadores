@@ -32,7 +32,7 @@ const Contact = () => {
               </div>
               <div>
                 <p className="font-medium text-gray-800">Dirección</p>
-                <p className="text-gray-600">123 Calle Principal, Ciudad, País</p>
+                <p className="text-gray-600">123 Calle Principal, Montevideo, Uruguay</p>
               </div>
             </div>
           </div>
