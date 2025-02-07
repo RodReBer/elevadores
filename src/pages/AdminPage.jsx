@@ -113,7 +113,7 @@ const AdminPage = () => {
           />
         </div>
         <div>
-          <label className="block mb-1">Descripción</label>
+          <label className="block mb-1">Descripci&oacute;n</label>
           <textarea
             name="description"
             value={product.description}
@@ -123,7 +123,7 @@ const AdminPage = () => {
           />
         </div>
         <div>
-          <label className="block mb-1">Descripción Corta</label>
+          <label className="block mb-1">Descripci&oacute;n Corta</label>
           <input
             type="text"
             name="shortDescription"
@@ -145,7 +145,7 @@ const AdminPage = () => {
           />
         </div>
         <div>
-          <label className="block mb-1">Categoría</label>
+          <label className="block mb-1">Categor&iacute;a</label>
           <input
             type="text"
             name="category"
@@ -156,7 +156,7 @@ const AdminPage = () => {
           />
         </div>
         <div>
-          <label className="block mb-1">Características</label>
+          <label className="block mb-1">Caracter&iacute;sticas</label>
           {product.features.map((feature, index) => (
             <input
               key={index}
@@ -171,11 +171,11 @@ const AdminPage = () => {
             onClick={() => addArrayField("features")}
             className="bg-blue-500 text-white px-2 py-1 rounded"
           >
-            Añadir Característica
+            Añadir Caracter&iacute;stica
           </button>
         </div>
         <div>
-          <label className="block mb-1">Imágenes (URLs)</label>
+          <label className="block mb-1">Im&aacute;genes (URLs)</label>
           {product.images.map((image, index) => (
             <input
               key={index}
@@ -227,7 +227,7 @@ const AdminPage = () => {
           />
         </div>
         <div>
-          <label className="block mb-1">Altura Máxima (metros)</label>
+          <label className="block mb-1">Altura M&aacute;xima (metros)</label>
           <input
             type="number"
             name="maxHeight"
@@ -238,7 +238,7 @@ const AdminPage = () => {
           />
         </div>
         <div>
-          <label className="block mb-1">Capacidad de Carga Máxima (kg)</label>
+          <label className="block mb-1">Capacidad de Carga M&aacute;xima (kg)</label>
           <input
             type="number"
             name="maxLoad"
@@ -249,7 +249,7 @@ const AdminPage = () => {
           />
         </div>
         <div>
-          <label className="block mb-1">Fuente de Energía</label>
+          <label className="block mb-1">Fuente de Energ&iacute;a</label>
           <input
             type="text"
             name="powerSource"
@@ -260,7 +260,7 @@ const AdminPage = () => {
           />
         </div>
         <div>
-          <label className="block mb-1">Tiempo de Operación (horas)</label>
+          <label className="block mb-1">Tiempo de Operaci&oacute;n (horas)</label>
           <input
             type="number"
             name="operationTime"

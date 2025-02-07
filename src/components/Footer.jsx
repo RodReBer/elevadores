@@ -5,7 +5,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-xl font-semibold mb-4">ElevaPro</h3>
-              <p>Importadores directos de plataformas elevadoras de batería de alta calidad.</p>
+              <p>Importadores directos de plataformas elevadoras de bater&iacute;a de alta calidad.</p>
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-4">Enlaces R&aacute;pidos</h3>

@@ -4,16 +4,16 @@ const Contact = () => {
   return (
     <section className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Contáctenos</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Cont&aacute;ctenos</h2>
         <div className="grid md:grid-cols-2 gap-8 items-start">
           <div className="bg-white p-8 rounded-lg shadow-lg space-y-6">
-            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Información de Contacto</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Informaci&oacute;n de Contacto</h3>
             <div className="flex items-center space-x-4">
               <div className="bg-red-100 p-3 rounded-full">
                 <Phone className="text-red-600 w-6 h-6" />
               </div>
               <div>
-                <p className="font-medium text-gray-800">Teléfono</p>
+                <p className="font-medium text-gray-800">Tel&eacute;fono</p>
                 <p className="text-gray-600">+1 234 567 890</p>
               </div>
             </div>
@@ -31,13 +31,13 @@ const Contact = () => {
                 <MapPin className="text-red-600 w-6 h-6" />
               </div>
               <div>
-                <p className="font-medium text-gray-800">Dirección</p>
+                <p className="font-medium text-gray-800">Direcci&oacute;n</p>
                 <p className="text-gray-600">123 Calle Principal, Montevideo, Uruguay</p>
               </div>
             </div>
           </div>
           <form className="bg-white p-8 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-semibold mb-6 text-gray-800">Envíenos un mensaje</h3>
+            <h3 className="text-2xl font-semibold mb-6 text-gray-800">Env&iacute;enos un mensaje</h3>
             <div className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">

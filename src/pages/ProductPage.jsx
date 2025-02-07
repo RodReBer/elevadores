@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom"
 import { ArrowLeft, Phone, Mail } from "lucide-react"
 import { useProducts } from "../contexts/ProductContext"
 import RelatedProducts from "../components/RelatedProducts"
+import { useEffect } from "react"
 
 const ProductPage = () => {
   const { id } = useParams()
@@ -21,9 +22,13 @@ const ProductPage = () => {
   if (!product) {
     return <div className="container mx-auto px-4 py-8 text-center">Producto no encontrado</div>
   }
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [id])
 
   return (
     <div className="container mx-auto px-4 py-8">
+
       <Link to="/" className="inline-flex items-center text-red-600 hover:text-red-800 mb-6">
         <ArrowLeft className="mr-2" />
         Volver a productos
@@ -62,23 +67,23 @@ const ProductPage = () => {
                 <strong>Modelo:</strong> {product.model}
               </li>
               <li>
-                <strong>Altura máxima:</strong> {product.maxHeight} metros
+                <strong>Altura m&aacute;xima:</strong> {product.maxHeight} metros
               </li>
               <li>
                 <strong>Capacidad de carga:</strong> {product.maxLoad} kg
               </li>
               <li>
-                <strong>Fuente de energía:</strong> {product.powerSource}
+                <strong>Fuente de energ&iacute;a:</strong> {product.powerSource}
               </li>
               {product.operationTime && (
                 <li>
-                  <strong>Tiempo de operación:</strong> {product.operationTime} horas
+                  <strong>Tiempo de operaci&oacute;n:</strong> {product.operationTime} horas
                 </li>
               )}
             </ul>
           </div>
 
-          <h2 className="text-2xl font-semibold mb-3">Características</h2>
+          <h2 className="text-2xl font-semibold mb-3">Caracter&iacute;sticas</h2>
           <ul className="list-disc list-inside mb-6">
             {product.features.map((feature, index) => (
               <li key={index} className="mb-2">
@@ -100,7 +105,7 @@ const ProductPage = () => {
           </div>
 
           <button className="bg-red-600 text-white py-2 px-6 rounded-full text-lg font-semibold hover:bg-red-700 transition duration-300">
-            Solicitar Cotización
+            Solicitar Cotizaci&oacute;n
           </button>
         </div>
       </div>
