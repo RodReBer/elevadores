@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom"
+import { useProducts } from "../contexts/ProductContext"
 
-const ProductCard = ({ id, name, description, imageUrl }) => (
+const ProductCard = ({ id, name, shortDescription, images }) => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden">
-    <img src={imageUrl || "/placeholder.svg"} alt={name} className="w-full h-48 object-cover" />
+    <img src={images[0] || "/placeholder.svg"} alt={name} className="w-full h-48 object-cover" />
     <div className="p-4">
       <h3 className="text-xl font-semibold mb-2">{name}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
+      <p className="text-gray-600 mb-4">{shortDescription}</p>
       <Link
         to={`/product/${id}`}
         className="inline-block bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition duration-300"
@@ -17,26 +18,10 @@ const ProductCard = ({ id, name, description, imageUrl }) => (
 )
 
 const Products = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Plataforma Tijera",
-      description: "Ideal para trabajos en interiores con altura de hasta 10 metros.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
-    },
-    {
-      id: 2,
-      name: "Plataforma Articulada",
-      description: "Perfecta para acceder a lugares de difícil acceso con gran alcance.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
-    },
-    {
-      id: 3,
-      name: "Plataforma Telescópica",
-      description: "Máxima altura y alcance para trabajos en exteriores.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
-    },
-  ]
+  const { products, loading, error } = useProducts()
+
+  if (loading) return <div>Cargando productos...</div>
+  if (error) return <div>Error: {error}</div>
 
   return (
     <section className="py-16 bg-gray-100">

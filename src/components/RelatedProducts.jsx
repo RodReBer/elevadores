@@ -1,8 +1,10 @@
+"use client"
 import { Link } from "react-router-dom"
+import { useProducts } from "../contexts/ProductContext"
 
-const RelatedProductCard = ({ id, name, imageUrl }) => (
+const RelatedProductCard = ({ id, name, images }) => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden">
-    <img src={imageUrl || "/placeholder.svg"} alt={name} className="w-full h-32 object-cover" />
+    <img src={images[0] || "/placeholder.svg"} alt={name} className="w-full h-32 object-cover" />
     <div className="p-4">
       <h3 className="text-lg font-semibold mb-2">{name}</h3>
       <Link
@@ -15,12 +17,16 @@ const RelatedProductCard = ({ id, name, imageUrl }) => (
   </div>
 )
 
-const RelatedProducts = () => {
-  const relatedProducts = [
-    { id: 4, name: "Plataforma Vertical", imageUrl: "/placeholder.svg?height=150&width=200" },
-    { id: 5, name: "Plataforma de Oruga", imageUrl: "/placeholder.svg?height=150&width=200" },
-    { id: 6, name: "Plataforma Remolcable", imageUrl: "/placeholder.svg?height=150&width=200" },
-  ]
+const RelatedProducts = ({ currentProductId, category }) => {
+  const { products } = useProducts()
+
+  const relatedProducts = products
+    .filter((product) => product.category === category && product.id !== currentProductId)
+    .slice(0, 3)
+
+  if (relatedProducts.length === 0) {
+    return null
+  }
 
   return (
     <section className="mt-16">

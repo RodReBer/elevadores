@@ -1,26 +1,25 @@
+"use client"
 import { useParams, Link } from "react-router-dom"
 import { ArrowLeft, Phone, Mail } from "lucide-react"
+import { useProducts } from "../contexts/ProductContext"
 import RelatedProducts from "../components/RelatedProducts"
 
 const ProductPage = () => {
   const { id } = useParams()
-  // En un caso real, aquí cargarías los datos del producto basado en el ID
-  const product = {
-    name: "Plataforma Elevadora XYZ",
-    description:
-      "Plataforma elevadora de alta calidad con capacidad de elevación de hasta 10 metros. Perfecta para trabajos en interiores y exteriores.",
-    features: [
-      "Altura máxima: 10 metros",
-      "Capacidad de carga: 300 kg",
-      "Alimentación: Batería de litio",
-      "Tiempo de operación: 8 horas",
-      "Sistema de seguridad avanzado",
-    ],
-    images: [
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-    ],
+  const { products, loading, error } = useProducts()
+
+  if (loading) {
+    return <div className="container mx-auto px-4 py-8 text-center">Cargando producto...</div>
+  }
+
+  if (error) {
+    return <div className="container mx-auto px-4 py-8 text-center text-red-600">Error: {error}</div>
+  }
+
+  const product = products.find((p) => p.id === id)
+
+  if (!product) {
+    return <div className="container mx-auto px-4 py-8 text-center">Producto no encontrado</div>
   }
 
   return (
@@ -53,6 +52,32 @@ const ProductPage = () => {
           <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
           <p className="text-gray-600 mb-6">{product.description}</p>
 
+          <div className="bg-gray-100 p-4 rounded-lg mb-6">
+            <h2 className="text-xl font-semibold mb-2">Especificaciones</h2>
+            <ul className="space-y-2">
+              <li>
+                <strong>Marca:</strong> {product.brand}
+              </li>
+              <li>
+                <strong>Modelo:</strong> {product.model}
+              </li>
+              <li>
+                <strong>Altura máxima:</strong> {product.maxHeight} metros
+              </li>
+              <li>
+                <strong>Capacidad de carga:</strong> {product.maxLoad} kg
+              </li>
+              <li>
+                <strong>Fuente de energía:</strong> {product.powerSource}
+              </li>
+              {product.operationTime && (
+                <li>
+                  <strong>Tiempo de operación:</strong> {product.operationTime} horas
+                </li>
+              )}
+            </ul>
+          </div>
+
           <h2 className="text-2xl font-semibold mb-3">Características</h2>
           <ul className="list-disc list-inside mb-6">
             {product.features.map((feature, index) => (
@@ -74,13 +99,13 @@ const ProductPage = () => {
             </div>
           </div>
 
-          <button className="cursor-pointer bg-red-600 text-white py-2 px-6 rounded-full text-lg font-semibold hover:bg-red-700 transition duration-300">
-            Solicitar Cotizaci&oacute;n
+          <button className="bg-red-600 text-white py-2 px-6 rounded-full text-lg font-semibold hover:bg-red-700 transition duration-300">
+            Solicitar Cotización
           </button>
         </div>
       </div>
 
-      <RelatedProducts />
+      <RelatedProducts currentProductId={id} category={product.category} />
     </div>
   )
 }
