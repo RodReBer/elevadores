@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { useProducts } from "../contexts/ProductContext"
+import Loader from "./Loader"
 
 const ProductCard = ({ id, name, shortDescription, images }) => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -20,8 +21,8 @@ const ProductCard = ({ id, name, shortDescription, images }) => (
 const Products = () => {
   const { products, loading, error } = useProducts()
 
-  if (loading) return <div>Cargando productos...</div>
-  if (error) return <div>Error: {error}</div>
+  if (loading) return <Loader />
+  if (error) return <div className="container mx-auto px-4 py-8 text-center text-red-600">Error: {error}</div>
 
   return (
     <section className="py-16 bg-gray-100">

@@ -11,7 +11,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="text-2xl font-bold">ElevaPro</div>
         <nav className="hidden md:flex space-x-6">
-          <a href="#" className="hover:text-red-200">
+          <a href="/" className="hover:text-red-200">
             Inicio
           </a>
           <a href="#" className="hover:text-red-200">
