@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Menu, X, Loader } from "lucide-react"
+import { Loader } from "lucide-react"
+import HamburgerIcon from "./HamburgerIcon"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -62,7 +63,7 @@ const Header = () => {
             <a
               key={item}
               href={`#${item}`}
-              className={`hover:text-red-200 text-red-100 transition-all duration-300 ${activeItem === item ? "border-b-2 border-white" : ""}`}
+              className={`hover:text-red-200 ${activeItem === item ? "border-b-2 border-white" : ""}`}
               onClick={(e) => {
                 e.preventDefault()
                 handleItemClick(item)
@@ -72,17 +73,21 @@ const Header = () => {
             </a>
           ))}
         </nav>
-        <a href="#contacto" className="hidden md:block hover:text-red-200 text-red-100 transition-all duration-300" onClick={() => handleItemClick("Contacto")}>
+        <a href="#contacto" className="hidden md:block hover:text-red-200" onClick={() => handleItemClick("Contacto")}>
           Contacto
         </a>
-        <button className="md:hidden text-red-100" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <X size={24} className="text-white" /> : <Menu size={24} className="text-white" />}
+        <button
+          className="md:hidden text-red-100"
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+        >
+          <HamburgerIcon isOpen={isMenuOpen} />
         </button>
       </div>
       {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden">
-          <nav className="flex flex-col items-center py-4 bg-red-600/90  shadow-md">
+          <nav className="flex flex-col items-center py-4 bg-red-600/90 shadow-md">
             {["Inicio", "Productos", "Servicios", "Contacto"].map((item) => (
               <a
                 key={item}
