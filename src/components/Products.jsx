@@ -25,7 +25,7 @@ const Products = () => {
   if (error) return <div className="container mx-auto px-4 py-8 text-center text-red-600">Error: {error}</div>
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section id="Productos" className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Nuestros Productos</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
