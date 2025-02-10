@@ -75,14 +75,14 @@ const Header = () => {
         <a href="#contacto" className="hidden md:block hover:text-red-200 text-red-100 transition-all duration-300" onClick={() => handleItemClick("Contacto")}>
           Contacto
         </a>
-        <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        <button className="md:hidden text-red-100" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? <X size={24} className="text-white" /> : <Menu size={24} className="text-white" />}
         </button>
       </div>
       {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden">
-          <nav className="flex flex-col items-center py-4 bg-red-600/90 shadow-md">
+          <nav className="flex flex-col items-center py-4 bg-red-600/90  shadow-md">
             {["Inicio", "Productos", "Servicios", "Contacto"].map((item) => (
               <a
                 key={item}
