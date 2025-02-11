@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { Loader } from "lucide-react"
 import HamburgerIcon from "./HamburgerIcon"
@@ -9,6 +9,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeItem, setActiveItem] = useState("Inicio")
+  const menuRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +33,16 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    if (menuRef.current) {
+      if (isMenuOpen) {
+        menuRef.current.style.maxHeight = `${menuRef.current.scrollHeight}px`
+      } else {
+        menuRef.current.style.maxHeight = "0px"
+      }
+    }
+  }, [isMenuOpen])
 
   const handleItemClick = (item) => {
     setIsMenuOpen(false)
@@ -63,7 +74,7 @@ const Header = () => {
             <a
               key={item}
               href={`#${item}`}
-              className={`hover:text-red-200 ${activeItem === item ? "border-b-2 border-white" : ""}`}
+              className={`hover:text-red-200 text-red-100 ${activeItem === item ? "border-b-2 border-white" : ""}`}
               onClick={(e) => {
                 e.preventDefault()
                 handleItemClick(item)
@@ -73,7 +84,11 @@ const Header = () => {
             </a>
           ))}
         </nav>
-        <a href="#contacto" className="hidden md:block hover:text-red-200" onClick={() => handleItemClick("Contacto")}>
+        <a
+          href="#contacto"
+          className="hidden md:block hover:text-red-200 text-red-100"
+          onClick={() => handleItemClick("Contacto")}
+        >
           Contacto
         </a>
         <button
@@ -85,25 +100,27 @@ const Header = () => {
         </button>
       </div>
       {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          <nav className="flex flex-col items-center py-4 bg-red-600/90 shadow-md">
-            {["Inicio", "Productos", "Servicios", "Contacto"].map((item) => (
-              <a
-                key={item}
-                href={`#${item}`}
-                className={`py-2 hover:text-red-200 text-red-100 transition-all duration-300 ${activeItem === item ? "border-b-2 border-white" : ""}`}
-                onClick={(e) => {
-                  e.preventDefault()
-                  handleItemClick(item)
-                }}
-              >
-                {item}
-              </a>
-            ))}
-          </nav>
-        </div>
-      )}
+      <div
+        ref={menuRef}
+        className="md:hidden overflow-hidden transition-all duration-300 ease-in-out"
+        style={{ maxHeight: "0px" }}
+      >
+        <nav className="flex flex-col items-center py-4 bg-red-600/90 shadow-md">
+          {["Inicio", "Productos", "Servicios", "Contacto"].map((item) => (
+            <a
+              key={item}
+              href={`#${item}`}
+              className={`py-2 hover:text-red-200 text-red-100 transition-all duration-300 ${activeItem === item ? "border-b-2 border-white" : ""}`}
+              onClick={(e) => {
+                e.preventDefault()
+                handleItemClick(item)
+              }}
+            >
+              {item}
+            </a>
+          ))}
+        </nav>
+      </div>
     </header>
   )
 }
